@@ -1,0 +1,23 @@
+name: Push File
+
+on: push
+
+jobs:
+  copy-file:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Pushes test file
+      uses: dmnemec/copy_file_to_another_repo_action@main
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.GH_TOKEN }}
+      with:
+        source_file: 'public'
+        destination_repo: 'adam-at-brown/ws-static-base'
+        destination_folder: 'src/gatsby-1'
+        destination_branch: main
+        user_email: 'adam_holtzman@brown.edu'
+        user_name: 'adam-at-brown'
+        commit_message: 'Add to repo'
