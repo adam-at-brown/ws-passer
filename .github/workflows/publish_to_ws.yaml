@@ -36,16 +36,14 @@ jobs:
 
     - name: Pushes to another repository
       id: push_directory
-      uses: cpina/github-action-push-to-another-repository@main
+      uses: dmnemec/copy_file_to_another_repo_action@main
       env:
         API_TOKEN_GITHUB: ${{ secrets.GH_TOKEN }}
       with:
-        source-directory: 'public'
-        destination-github-username: 'adam-at-brown'
-        destination-repository-name: 'ws-static-base'
-        user-email: adh@example.com
-        commit-message: See ORIGIN_COMMIT from $GITHUB_REF
-        target-branch: main
+        source_file: 'public'
+        destination_repo: 'adam-at-brown/ws-static-base'
+        user_email: adh@example.com
+        commit_message: See ORIGIN_COMMIT from $GITHUB_REF
 
     - name: Test get variable exported by push-to-another-repository
       run: echo $DESTINATION_CLONED_DIRECTORY
