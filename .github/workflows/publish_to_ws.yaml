@@ -42,7 +42,8 @@ jobs:
       with:
         source_file: 'public'
         destination_repo: 'adam-at-brown/ws-static-base'
-        user_email: adh@example.com
+        user_name: adam-at-brown
+        user_email: adam_holtzman@brown.edu
         commit_message: See ORIGIN_COMMIT from $GITHUB_REF
 
     - name: Test get variable exported by push-to-another-repository
