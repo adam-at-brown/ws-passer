@@ -41,6 +41,7 @@ jobs:
         API_TOKEN_GITHUB: ${{ secrets.GH_TOKEN }}
       with:
         source_file: 'public'
+        destination_folder: src
         destination_repo: 'adam-at-brown/ws-static-base'
         user_name: adam-at-brown
         user_email: adam_holtzman@brown.edu
