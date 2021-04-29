@@ -14,7 +14,7 @@ jobs:
       env:
         API_TOKEN_GITHUB: ${{ secrets.GH_TOKEN }}
       with:
-        source_file: 'public'
+        source_file: 'ws-passer'
         destination_repo: 'adam-at-brown/ws-static-base'
         destination_folder: 'src/gatsby-1'
         destination_branch: main
