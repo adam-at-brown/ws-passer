@@ -14,7 +14,6 @@ jobs:
       env:
         API_TOKEN_GITHUB: ${{ secrets.GH_TOKEN }}
       with:
-        run: echo $GITHUB_BASE_REF
         source_file: './'
         destination_repo: 'adam-at-brown/ws-static-base'
         destination_folder: 'src/gatsby-1'
@@ -47,7 +46,7 @@ jobs:
         destination_branch: test-branch-name
         user_name: adam-at-brown
         user_email: adam_holtzman@brown.edu
-        commit_message: 'new compiled version for deployment $GITHUB_REPOSITORY $GITHUB_JOB'
+        commit_message: 'new compiled version for deployment ${{ GITHUB_REPOSITORY }} ${{ GITHUB_JOB }}'
 
     - name: Test get variable exported by push-to-another-repository
-      run: echo $DESTINATION_CLONED_DIRECTORY
+      run: echo ${{ DESTINATION_CLONED_DIRECTORY }}
