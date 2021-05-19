@@ -46,4 +46,4 @@ jobs:
         destination_branch: test-branch-name
         user_name: adam-at-brown
         user_email: adam_holtzman@brown.edu
-        commit_message: 'new compiled version for deployment ${{ github.actor }}'
+        commit_message: 'new compiled version for deployment ${{ github.actor }}!'
