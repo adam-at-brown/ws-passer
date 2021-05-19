@@ -17,6 +17,7 @@ jobs:
         source_file: './'
         destination_repo: 'adam-at-brown/ws-static-base'
         destination_folder: 'src/gatsby-1'
+        destination_branch_create: new_deploy
         destination_branch: new_deploy
         user_email: 'adam_holtzman@brown.edu'
         user_name: 'adam-at-brown'
@@ -43,6 +44,7 @@ jobs:
         source_file: 'public'
         destination_folder: src/site_name
         destination_repo: 'adam-at-brown/ws-static-base'
+        destination_branch_create: new_compliled_deploy
         destination_branch: new_compliled_deploy
         user_name: adam-at-brown
         user_email: adam_holtzman@brown.edu
