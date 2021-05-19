@@ -16,7 +16,7 @@ jobs:
       with:
         source_file: './'
         destination_repo: 'adam-at-brown/ws-static-base'
-        destination_folder: 'src/gatsby-1'
+        destination_folder: 'src/plain_html'
         destination_branch: test-branch-name
         user_email: 'adam_holtzman@brown.edu'
         user_name: 'adam-at-brown'
@@ -41,7 +41,7 @@ jobs:
         API_TOKEN_GITHUB: ${{ secrets.GH_TOKEN }}
       with:
         source_file: 'public'
-        destination_folder: src/site_name
+        destination_folder: src/this_site_name
         destination_repo: 'adam-at-brown/ws-static-base'
         destination_branch: test-branch-name
         user_name: adam-at-brown
