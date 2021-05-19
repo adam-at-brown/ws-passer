@@ -14,11 +14,12 @@ jobs:
       env:
         API_TOKEN_GITHUB: ${{ secrets.GH_TOKEN }}
       with:
+        run: echo $GITHUB_BASE_REF
         source_file: './'
         destination_repo: 'adam-at-brown/ws-static-base'
         destination_folder: 'src/gatsby-1'
-        destination_branch_create: $GITHUB_BASE_REF
-        destination_branch: $GITHUB_BASE_REF
+        destination_branch_create: GITHUB_BASE_REF
+        destination_branch: GITHUB_BASE_REF
         user_email: 'adam_holtzman@brown.edu'
         user_name: 'adam-at-brown'
         commit_message: 'new version for deployment from $GITHUB_REPOSITORY $GITHUB_JOB'
