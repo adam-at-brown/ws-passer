@@ -14,7 +14,7 @@ jobs:
       env:
         API_TOKEN_GITHUB: ${{ secrets.GH_TOKEN }}
       with:
-        source_file: './'
+        source_file: 'src'
         destination_repo: 'adam-at-brown/ws-static-base'
         destination_folder: 'src/plain_html'
         destination_branch: test-branch-name
