@@ -49,7 +49,7 @@ jobs:
       id: pull-request
       uses: peter-evans/create-pull-request@v3
       with:
-        token: ${{ secrets.GH_TOKEN }}
+        token: ${{ secrets.WSS_2 }}
         path: ws-static-base
         commit-message: "Update admissions contact form app"
         branch: test-branch-name
