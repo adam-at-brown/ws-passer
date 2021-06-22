@@ -14,7 +14,7 @@ jobs:
       env:
         API_TOKEN_GITHUB: ${{ secrets.GH_TOKEN }}
       with:
-        source_file: './'
+        source_file: './src'
         destination_repo: 'adam-at-brown/ws-static-base'
         destination_folder: 'src/plain_html'
         user_email: 'adam_holtzman@brown.edu'
@@ -50,7 +50,7 @@ jobs:
       uses: peter-evans/create-pull-request@v3
       with:
         token: ${{ secrets.GH_TOKEN }}
-        path: dreact
+        path: ws-static-base
         commit-message: "Update admissions contact form app"
         branch: test-branch-name
         title: "Make site go now"
