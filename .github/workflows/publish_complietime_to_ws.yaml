@@ -56,3 +56,6 @@ jobs:
         branch: test-branch-name
         title: "Make site go now better"
         body: "Changes from ${{ github.event.pull_request.html_url }}"
+        reviewers: |
+          adam-at-brown
+          aholtzman
