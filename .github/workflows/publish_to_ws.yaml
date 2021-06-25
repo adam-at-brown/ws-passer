@@ -29,23 +29,23 @@ jobs:
     #     user_email: 'adam_holtzman@brown.edu'
     #     user_name: 'adam-at-brown'
 
-    - name: Navigate to repo
-      run: cd $GITHUB_WORKSPACE
-    - uses: actions/setup-node@v1
-      with:
-        node-version: "12.x"
-    - name: Install deps
-      run: yarn
-    - name: Clean for Build
-      run: yarn clean
-    - name: Build docs
-      run: yarn build
+    # - name: Navigate to repo
+    #   run: cd $GITHUB_WORKSPACE
+    # - uses: actions/setup-node@v1
+    #   with:
+    #     node-version: "12.x"
+    # - name: Install deps
+    #   run: yarn
+    # - name: Clean for Build
+    #   run: yarn clean
+    # - name: Build docs
+    #   run: yarn build
 
     - name: Copy existing Files
       run: cp -r src charlie/testy5
 
-    - name: Copy complied Files
-      run: cp -r build charlie/build6
+    # - name: Copy complied Files
+    #   run: cp -r build charlie/build6
 
     # - name: Pushes to another repository
     #   id: push_directory
@@ -65,7 +65,7 @@ jobs:
       uses: peter-evans/create-pull-request@v3
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        path: ws-static-base
+        path: charlie
         commit-message: "Update test passer stuff"
         branch: feature/ws-passer
         title: "Make site go now"
