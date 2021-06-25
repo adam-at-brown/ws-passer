@@ -42,7 +42,7 @@ jobs:
     #   run: yarn build
 
     - name: Copy existing Files
-      run: cp -r src charlie/testy5
+      run: cp -r public charlie/testy5
 
     # - name: Copy complied Files
     #   run: cp -r build charlie/build6
