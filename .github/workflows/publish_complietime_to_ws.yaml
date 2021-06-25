@@ -9,12 +9,6 @@ jobs:
     - name: Checkout Source
       uses: actions/checkout@v2
 
-    - name: Checkout Receiving Repo
-      uses: actions/checkout@v2
-      with:
-        repository: "adam-at-brown/ws-static-base"
-        token: ${{ secrets.GITHUB_TOKEN }}
-
     - name: Navigate to repo
       run: cd $GITHUB_WORKSPACE
     - uses: actions/setup-node@v1
@@ -39,6 +33,12 @@ jobs:
         destination_branch: test-branch-name
         user_name: adam-at-brown
         user_email: adam_holtzman@brown.edu
+
+    - name: Checkout Receiving Repo
+      uses: actions/checkout@v2
+      with:
+        repository: "adam-at-brown/ws-static-base"
+        token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Open Module Pull Request
       id: pull-request
