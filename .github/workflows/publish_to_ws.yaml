@@ -47,17 +47,6 @@ jobs:
     - name: Copy complied Files
       run: cp -r build charlie/build6
 
-    - name: Open Module Pull Request
-      id: pull-request
-      uses: peter-evans/create-pull-request@v3
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        path: src
-        commit-message: "make site good"
-        branch: feature/ws-passer
-        title: "Test passing function"
-        body: "Changes from ${{ github.event.pull_request.html_url }}"
-
     # - name: Pushes to another repository
     #   id: push_directory
     #   uses: dmnemec/copy_file_to_another_repo_action@main
