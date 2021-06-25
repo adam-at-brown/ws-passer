@@ -23,19 +23,6 @@ jobs:
     - name: Build docs
       run: cd main && yarn build
 
-    # - name: Pushes to another repository
-    #   id: push_directory
-    #   uses: dmnemec/copy_file_to_another_repo_action@main
-    #   env:
-    #     API_TOKEN_GITHUB: ${{ secrets.GH_TOKEN }}
-    #   with:
-    #     source_file: main/public
-    #     destination_folder: src/this_site_name
-    #     destination_repo: 'adam-at-brown/ws-static-base'
-    #     destination_branch: test-branch-name
-    #     user_name: adam-at-brown
-    #     user_email: adam_holtzman@brown.edu
-
     - name: Checkout Receiving Repo
       uses: actions/checkout@v2
       with:
@@ -56,6 +43,12 @@ jobs:
         branch: test-branch-name
         title: "Make site go now better"
         body: "Changes from ${{ github.event.pull_request.html_url }}"
+        labels: |
+            hello
+            cheese wiz
+        team-reviewers: |
+          owners
+          maintainers
         reviewers: |
           adam-at-brown
           aholtzman

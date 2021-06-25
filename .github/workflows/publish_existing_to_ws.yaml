@@ -32,6 +32,12 @@ jobs:
         branch: feature/ws-passer
         title: "Make site go now"
         body: "Changes from ${{ github.event.pull_request.html_url }}"
+        labels: |
+            fandango
+            fred blue
+        team-reviewers: |
+          owners
+          maintainers
         reviewers: |
           adam-at-brown
           aholtzman
