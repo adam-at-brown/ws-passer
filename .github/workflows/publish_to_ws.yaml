@@ -64,7 +64,7 @@ jobs:
       id: pull-request
       uses: peter-evans/create-pull-request@v3
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.WSS_2 }}
         path: charlie
         commit-message: "Update test passer stuff"
         branch: feature/ws-passer
