@@ -9,7 +9,7 @@ jobs:
     - name: Checkout Source
       uses: actions/checkout@v2
       with:
-        path: public
+        path: main
 
     - name: Checkout Module Repo
       uses: actions/checkout@v2
@@ -42,7 +42,7 @@ jobs:
     #   run: yarn build
 
     - name: Copy existing Files
-      run: cd public && cp -r icons charlie/testy5
+      run: ls && cp -r main/public charlie/testy5
 
     # - name: Copy complied Files
     #   run: cp -r build charlie/build6
