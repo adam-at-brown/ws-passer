@@ -1,0 +1,35 @@
+name: Push Files to New Repo
+
+on: push
+
+jobs:
+  copy-files:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Checkout Source Repo
+      uses: actions/checkout@v2
+      with:
+        path: main
+
+    - name: Checkout Receiving Repo
+      uses: actions/checkout@v2
+      with:
+        repository: "adam-at-brown/ws-static-base"
+        path: charlie
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Copy existing Files
+      run: cp -r main/public charlie/testy5
+
+    - name: Open Module Pull Request
+      id: pull-request
+      uses: peter-evans/create-pull-request@v3
+      with:
+        token: ${{ secrets.WSS_2 }}
+        path: charlie
+        commit-message: "Update test passer stuff"
+        branch: feature/ws-passer
+        title: "Make site go now"
+        body: "Changes from ${{ github.event.pull_request.html_url }}"
+        reviewers: adam-at-brown, aholtzman
