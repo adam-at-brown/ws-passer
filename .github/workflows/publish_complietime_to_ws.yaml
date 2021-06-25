@@ -19,9 +19,9 @@ jobs:
     - name: Install deps
       run: cd main && yarn
     - name: Clean for Build
-      run: yarn clean
+      run: cd main && yarn clean
     - name: Build docs
-      run: yarn build
+      run: cd main && yarn build
 
     # - name: Pushes to another repository
     #   id: push_directory
