@@ -20,7 +20,7 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Copy existing Files
-      run: cp -r main/public charlie/testy5
+      run: cp -r main/src charlie/testy5
 
     - name: Open Module Pull Request
       id: pull-request
