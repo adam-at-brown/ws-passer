@@ -38,6 +38,7 @@ jobs:
       uses: actions/checkout@v2
       with:
         repository: "adam-at-brown/ws-static-base"
+        path: charlie
         token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Open Module Pull Request
