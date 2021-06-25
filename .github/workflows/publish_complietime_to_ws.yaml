@@ -1,4 +1,4 @@
-name: Push Files to New Repo
+name: Push Comple Time Files to New Repo
 
 on: push
 
@@ -8,57 +8,31 @@ jobs:
     steps:
     - name: Checkout Source
       uses: actions/checkout@v2
+
+    - name: Navigate to repo
+      run: cd $GITHUB_WORKSPACE
+    - uses: actions/setup-node@v1
       with:
-        path: main
+        node-version: "12.x"
+    - name: Install deps
+      run: yarn
+    - name: Clean for Build
+      run: yarn clean
+    - name: Build docs
+      run: yarn build
 
-    - name: Checkout Module Repo
-      uses: actions/checkout@v2
+    - name: Pushes to another repository
+      id: push_directory
+      uses: dmnemec/copy_file_to_another_repo_action@main
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.GH_TOKEN }}
       with:
-        repository: "adam-at-brown/ws-static-base"
-        path: charlie
-        token: ${{ secrets.GITHUB_TOKEN }}
-
-    # - name: Pushes Pre-Complied files
-    #   uses: dmnemec/copy_file_to_another_repo_action@main
-    #   env:
-    #     API_TOKEN_GITHUB: ${{ secrets.GH_TOKEN }}
-    #   with:
-    #     source_file: './src'
-    #     destination_repo: 'adam-at-brown/ws-static-base'
-    #     destination_folder: 'src/plain_html'
-    #     user_email: 'adam_holtzman@brown.edu'
-    #     user_name: 'adam-at-brown'
-
-    # - name: Navigate to repo
-    #   run: cd $GITHUB_WORKSPACE
-    # - uses: actions/setup-node@v1
-    #   with:
-    #     node-version: "12.x"
-    # - name: Install deps
-    #   run: yarn
-    # - name: Clean for Build
-    #   run: yarn clean
-    # - name: Build docs
-    #   run: yarn build
-
-    - name: Copy existing Files
-      run: ls && cp -r main/public charlie/testy5
-
-    # - name: Copy complied Files
-    #   run: cp -r build charlie/build6
-
-    # - name: Pushes to another repository
-    #   id: push_directory
-    #   uses: dmnemec/copy_file_to_another_repo_action@main
-    #   env:
-    #     API_TOKEN_GITHUB: ${{ secrets.GH_TOKEN }}
-    #   with:
-    #     source_file: 'public'
-    #     destination_folder: src/this_site_name
-    #     destination_repo: 'adam-at-brown/ws-static-base'
-    #     destination_branch: test-branch-name
-    #     user_name: adam-at-brown
-    #     user_email: adam_holtzman@brown.edu
+        source_file: 'public'
+        destination_folder: src/this_site_name
+        destination_repo: 'adam-at-brown/ws-static-base'
+        destination_branch: test-branch-name
+        user_name: adam-at-brown
+        user_email: adam_holtzman@brown.edu
 
     - name: Open Module Pull Request
       id: pull-request
@@ -66,7 +40,7 @@ jobs:
       with:
         token: ${{ secrets.WSS_2 }}
         path: charlie
-        commit-message: "Update test passer stuff"
-        branch: feature/ws-passer
-        title: "Make site go now"
+        commit-message: "Update test passer stuff with compiled code"
+        branch: feature/ws-passer2
+        title: "Make site go now better"
         body: "Changes from ${{ github.event.pull_request.html_url }}"
