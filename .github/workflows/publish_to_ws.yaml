@@ -1,4 +1,4 @@
-name: Push File
+name: Push Files to New Repo
 
 on: push
 
@@ -6,19 +6,28 @@ jobs:
   copy-file:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
+    - name: Checkout Source
       uses: actions/checkout@v2
-
-    - name: Pushes Pre-Complied files
-      uses: dmnemec/copy_file_to_another_repo_action@main
-      env:
-        API_TOKEN_GITHUB: ${{ secrets.GH_TOKEN }}
       with:
-        source_file: './src'
-        destination_repo: 'adam-at-brown/ws-static-base'
-        destination_folder: 'src/plain_html'
-        user_email: 'adam_holtzman@brown.edu'
-        user_name: 'adam-at-brown'
+        path: public
+
+    - name: Checkout Module Repo
+      uses: actions/checkout@v2
+      with:
+        repository: "adam-at-brown/ws-static-base"
+        path: charlie
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    # - name: Pushes Pre-Complied files
+    #   uses: dmnemec/copy_file_to_another_repo_action@main
+    #   env:
+    #     API_TOKEN_GITHUB: ${{ secrets.GH_TOKEN }}
+    #   with:
+    #     source_file: './src'
+    #     destination_repo: 'adam-at-brown/ws-static-base'
+    #     destination_folder: 'src/plain_html'
+    #     user_email: 'adam_holtzman@brown.edu'
+    #     user_name: 'adam-at-brown'
 
     - name: Navigate to repo
       run: cd $GITHUB_WORKSPACE
@@ -32,26 +41,43 @@ jobs:
     - name: Build docs
       run: yarn build
 
-    - name: Pushes to another repository
-      id: push_directory
-      uses: dmnemec/copy_file_to_another_repo_action@main
-      env:
-        API_TOKEN_GITHUB: ${{ secrets.GH_TOKEN }}
-      with:
-        source_file: 'public'
-        destination_folder: src/this_site_name
-        destination_repo: 'adam-at-brown/ws-static-base'
-        destination_branch: test-branch-name
-        user_name: adam-at-brown
-        user_email: adam_holtzman@brown.edu
+    - name: Copy existing Files
+      run: cp -r src charlie/testy5
+
+    - name: Copy complied Files
+      run: cp -r build charlie/build6
 
     - name: Open Module Pull Request
       id: pull-request
       uses: peter-evans/create-pull-request@v3
       with:
-        token: ${{ secrets.WSS_2 }}
+        token: ${{ secrets.GITHUB_TOKEN }}
+        path: src
+        commit-message: "make site good"
+        branch: feature/ws-passer
+        title: "Test passing function"
+        body: "Changes from ${{ github.event.pull_request.html_url }}"
+
+    # - name: Pushes to another repository
+    #   id: push_directory
+    #   uses: dmnemec/copy_file_to_another_repo_action@main
+    #   env:
+    #     API_TOKEN_GITHUB: ${{ secrets.GH_TOKEN }}
+    #   with:
+    #     source_file: 'public'
+    #     destination_folder: src/this_site_name
+    #     destination_repo: 'adam-at-brown/ws-static-base'
+    #     destination_branch: test-branch-name
+    #     user_name: adam-at-brown
+    #     user_email: adam_holtzman@brown.edu
+
+    - name: Open Module Pull Request
+      id: pull-request
+      uses: peter-evans/create-pull-request@v3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
         path: ws-static-base
-        commit-message: "Update admissions contact form app"
-        branch: test-branch-name
+        commit-message: "Update test passer stuff"
+        branch: feature/ws-passer
         title: "Make site go now"
         body: "Changes from ${{ github.event.pull_request.html_url }}"
