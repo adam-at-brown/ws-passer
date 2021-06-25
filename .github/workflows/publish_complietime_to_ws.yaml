@@ -8,6 +8,8 @@ jobs:
     steps:
     - name: Checkout Source
       uses: actions/checkout@v2
+      with:
+        path: main
 
     - name: Navigate to repo
       run: cd $GITHUB_WORKSPACE
@@ -21,18 +23,18 @@ jobs:
     - name: Build docs
       run: yarn build
 
-    - name: Pushes to another repository
-      id: push_directory
-      uses: dmnemec/copy_file_to_another_repo_action@main
-      env:
-        API_TOKEN_GITHUB: ${{ secrets.GH_TOKEN }}
-      with:
-        source_file: 'public'
-        destination_folder: src/this_site_name
-        destination_repo: 'adam-at-brown/ws-static-base'
-        destination_branch: test-branch-name
-        user_name: adam-at-brown
-        user_email: adam_holtzman@brown.edu
+    # - name: Pushes to another repository
+    #   id: push_directory
+    #   uses: dmnemec/copy_file_to_another_repo_action@main
+    #   env:
+    #     API_TOKEN_GITHUB: ${{ secrets.GH_TOKEN }}
+    #   with:
+    #     source_file: 'public'
+    #     destination_folder: src/this_site_name
+    #     destination_repo: 'adam-at-brown/ws-static-base'
+    #     destination_branch: test-branch-name
+    #     user_name: adam-at-brown
+    #     user_email: adam_holtzman@brown.edu
 
     - name: Checkout Receiving Repo
       uses: actions/checkout@v2
@@ -41,6 +43,9 @@ jobs:
         path: charlie
         token: ${{ secrets.GITHUB_TOKEN }}
 
+    - name: Copy existing Files
+      run: cp -r main/build charlie/complied-film
+
     - name: Open Module Pull Request
       id: pull-request
       uses: peter-evans/create-pull-request@v3
@@ -48,6 +53,6 @@ jobs:
         token: ${{ secrets.WSS_2 }}
         path: charlie
         commit-message: "Update test passer stuff with compiled code"
-        branch: feature/ws-passer2
+        branch: feature/ws-passer23
         title: "Make site go now better"
         body: "Changes from ${{ github.event.pull_request.html_url }}"
