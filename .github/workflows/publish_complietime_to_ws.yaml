@@ -29,7 +29,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Copy existing Files
-        run: cp -r main/public charlie/complied-film
+        run: cp -r public charlie/complied-film
 
       - name: Open Module Pull Request
         id: pull-request
